@@ -13,17 +13,21 @@
     background-color: #ffd60a;
     color: #000814;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .calculator {
-    width: 100%;
+    width: 90%;
+    margin-left: 10px;
+    margin-top: 10px;
     max-width: 600px;
-    margin-left: 10%;
-    margin-top: 10%;
 }
 
 .calculator>h1 {
-    font-size: 60px;
+    font-size: 3.5rem;
+
 }
 
 .input-box {
@@ -69,6 +73,8 @@
     width: auto;
 }
 
-p{
-    color: whitesmoke;
+p {
+    color: #000814;
+    font-size: large;
+    font-weight: 700;
 }
