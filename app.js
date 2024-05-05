@@ -38,10 +38,12 @@ function calculateAge() {
 
   if (nextBirthday < today) {
     nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+  } else {
+    nextBirthday.setFullYear(nextBirthday.getFullYear())
   }
 
   let timeUntilNextBirthday = nextBirthday.getTime() - today.getTime();
-  let daysUntilNextBirthday = Math.ceil(timeUntilNextBirthday / (1000 * 60 * 60 * 24));
+  let daysUntilNextBirthday = Math.floor(timeUntilNextBirthday / (1000 * 60 * 60 * 24));
 
   birthday.innerHTML = `Your next birthday is in ${daysUntilNextBirthday} days.`
 }
