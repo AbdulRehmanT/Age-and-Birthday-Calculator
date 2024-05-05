@@ -1,49 +1,51 @@
+//Age Calculator
 let userInput = document.getElementById("date");
 userInput.max = new Date().toISOString().split("T")[0];
 
 let result = document.getElementById("result");
 
-function calculateAge(){
-    let birth = new Date(userInput.value);
+function calculateAge() {
+  let birth = new Date(userInput.value);
+  let today = new Date();
 
-    let d1 = birth.getDate();
-    let m1 = birth.getMonth() + 1;
-    let y1 = birth.getFullYear();
-    
-    let today = new Date();
+  let date = today.getDate() - birth.getDate();
+  let month = today.getMonth() - birth.getMonth();
+  let year = today.getFullYear() - birth.getFullYear();
 
-    let d2 = today.getDate();
-    let m2 = today.getMonth() + 1;
-    let y2 = today.getFullYear();
-    
-    let d3,m3,y3;
+  if (month < 0 || (month === 0 && date < 0)) {
+    year--;
+    month += 12;
+  }
 
-    y3 = y2- y1;
+  if (date < 0) {
+    let daysInLastMonth = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      0
+    ).getDate();
+    date += daysInLastMonth;
+    month--;
+  }
 
-    if(m2>= m1){
-        m3=m2-m1;
-    } else{
-        y3--;
-        m3 = 12 + m2-m1
-    }
+  result.innerHTML = `Your are ${year} years, ${month} months and ${date} days old.`;
 
-    if(d2>=d1){
-        d3 =d2-d1
-    } else {
-        m3--;
-        d3 = getDaysInMonth(y1,m1) + d2 - d1;
-    }
+  //Birthday-Calculator
 
-    if(m3 < 0){
-        m3 = 11
-        y3--;
+  let birthday = document.getElementById("birthday-calculation");
 
-    }
+//   let nextBirthday = newDate(today.getFullYear(), birth.getMonth(), birth.getDate());
+  let nextBirthday = birth; 
 
-    result.innerHTML = `Your are ${y3} years, ${m3} months and ${d3} days old.`
+  if (nextBirthday < today) {
+    nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+  }
+
+  let timeUntilNextBirthday = nextBirthday.getTime() - today.getTime();
+  let daysUntilNextBirthday = Math.ceil(timeUntilNextBirthday / (1000 * 60 * 60 * 24));
+
+  birthday.innerHTML = `Your next birthday is in ${daysUntilNextBirthday} days.`
 }
 
-function getDaysInMonth(year,month){
-    return new Date(year,month, 0).getDate();
+function getDaysInMonth(year, month) {
+  return new Date(year, month, 0).getDate();
 }
-
