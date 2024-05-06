@@ -1,2 +1,1 @@
-# Age-Calculator
-Age Calculator using JS
+# Age-Calculator & Bithday Calculator
