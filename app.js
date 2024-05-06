@@ -33,16 +33,13 @@ function calculateAge() {
 
   let birthday = document.getElementById("birthday-calculation");
 
-//   let nextBirthday = newDate(today.getFullYear(), birth.getMonth(), birth.getDate());
-  let nextBirthday = birth; 
-
-  if (nextBirthday < today) {
-    nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+  if (birth.getMonth() < today.getMonth()) {
+    birth.setFullYear(today.getFullYear()+1);
   } else {
-    nextBirthday.setFullYear(nextBirthday.getFullYear())
+    birth.setFullYear(today.getFullYear());
   }
 
-  let timeUntilNextBirthday = nextBirthday.getTime() - today.getTime();
+  let timeUntilNextBirthday = (birth.getTime() - today.getTime());
   let daysUntilNextBirthday = Math.floor(timeUntilNextBirthday / (1000 * 60 * 60 * 24));
 
   birthday.innerHTML = `Your next birthday is in ${daysUntilNextBirthday} days.`
